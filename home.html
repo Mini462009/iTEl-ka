@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITEL</title>
+    <script>
+        // 登录校验 不跟任何代码冲突
+        (function () {
+            if (!localStorage.getItem("loginOk")) {
+                location.href = "index2.html";
+            }
+        })();
+    </script>
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgb(48, 12, 250) 10%, #05d3f7 45%, #002fff83 100%);
+        }
+
+        /* 隐藏单选按钮 */
+        input {
+            display: none;
+        }
+
+        /* 外面大容器：五个连在一起，整体圆角 */
+        .menu-wrap {
+            width: 600px;
+            display: flex;
+            border-radius: 10px;
+            /* 整体四个角圆角 */
+            overflow: hidden;
+            /* 把尖角切掉，整体圆润 */
+            margin: auto;
+            margin-top: 15%;
+            border: 1px solid white;
+        }
+
+        /* 每一个选项平分宽度，连在一起 */
+        .menu-wrap label {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            background: linear-gradient(120deg, rgba(0, 0, 255, 0.342) 10%, rgb(152, 238, 224) 90%);
+            color: #000000;
+            cursor: pointer;
+            font-size: 16px;
+            border-right: 1px solid #11d4f7;
+        }
+
+        /* 最后一个去掉右边边框 */
+        .menu-wrap label:last-child {
+            border-right: none;
+        }
+
+        /* 选中：亮起+底色变深+边框高亮 */
+        #tab1:checked~.menu-wrap label[for="tab1"],
+        #tab2:checked~.menu-wrap label[for="tab2"],
+        #tab3:checked~.menu-wrap label[for="tab3"],
+        #tab4:checked~.menu-wrap label[for="tab4"],
+        #tab5:checked~.menu-wrap label[for="tab5"] {
+            background: #00aeff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* 内容区域 */
+        .content {
+            display: none;
+            width: 600px;
+            margin: 30px auto;
+            padding: 30px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        #tab1:checked~.c1 {
+            display: block;
+        }
+
+        #tab2:checked~.c2 {
+            display: block;
+        }
+
+        #tab3:checked~.c3 {
+            display: block;
+        }
+
+        #tab4:checked~.c4 {
+            display: block;
+        }
+
+        #tab5:checked~.c5 {
+            display: block;
+        }
+
+        .box {
+            position: relative;
+            border: 2px solid rgba(0, 0, 0, 0.356);
+            border-radius: 2%;
+            padding: 10px;
+            width: 700px;
+            height: 600px;
+            right: 10%;
+            top: 10%;
+            background: linear-gradient(30deg, rgba(15, 66, 236, 0.678), rgba(14, 239, 247, 0.548));
+        }
+
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: none
+        }
+
+        .box2 {
+            position: absolute;
+            margin-top: -99%;
+            left: 20%;
+            display: flex;
+            gap: 30px;
+            font-size: 20px;
+        }
+
+        .dong {
+            color: #f5f5f5;
+
+        }
+
+        .ban {
+            background: linear-gradient(to left, rgb(4, 0, 255), rgb(11, 236, 236));
+            width: 100%;
+            height: 35px;
+            position: absolute;
+            top: 115%;
+            left: 0%;
+            text-align: center;
+        }
+
+
+        #hower:hover {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.514), rgb(248, 129, 228));
+        }
+
+        .bian {
+            position: absolute;
+            margin-top: -15%;
+            right: 1%;
+            border-radius: 20%;
+            width: 50px;
+            height: 40px;
+            border: none;
+            background: linear-gradient(to right, rgb(4, 4, 247), rgba(250, 251, 253, 0.685));
+            color: whitesmoke;
+        }
+
+        .bianzi:hover {
+            text-shadow: 2px 2px 3px #e4e4ec, -2px -2px 3px #d2d0df;
+
+        }
+
+        .ren {
+            position: absolute;
+            background-color: #00000017;
+            width: 80px;
+            height: 40px;
+            left: 45%;
+            top: 10%;
+            border: 2px solid #000000;
+            text-align: center;
+            line-height: 1.8;
+            border-radius: 12%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <A href="index.html"><button id="hower" class="bian">back/返回</button></A>
+
+    <input type="radio" name="m" id="tab1"checked>
+    <input type="radio" name="m" id="tab2" >
+    <input type="radio" name="m" id="tab3">
+    <input type="radio" name="m" id="tab4">
+    <input type="radio" name="m" id="tab5">
+
+    <div class="menu-wrap">
+        <label for="tab1" id="hower">首页</label>
+        <label for="tab2" id="hower">人员信息</label>
+        <label for="tab3" id="hower">公司规章制度</label>
+        <label for="tab4" id="hower">充值系统教程</label>
+        <label for="tab5" id="hower">记账系统教程</label>
+    </div>
+
+    <div class="content c1">
+        <div class="box">
+            <!-- 把 ul 再包一层 div，给外层加样式 -->
+            <div style="padding: 20px;">
+                <ul style="text-align: left; padding-left: 20px; list-style: disc; line-height: 1.8; font-size: 14px;">
+                    <li>您好</li>
+                    <li>本人开发本网页，主要用于给公司新人做教学指导使用。平时写代码也是我的个人爱好，目前公司缺少相关教程素材，也没人整理制作，所以由我牵头搭建了这个内部教程网页。</li>
+                    <li>网页中包含公司人员信息介绍（介绍各岗位人员）、充值教程及相关链接、记账系统使用说明等内容。</li>
+                    <li>我也是刚开始学习做网页，页面还有很多不够完善的地方，还请大家多多理解。
+                    </li>
+                </ul>
+            </div>
+            <hr style="position: absolute;
+            background-color:  #000000;
+            color: #000;
+            width: 100%;
+            height: 3px;
+            border: none;
+            left:0%;
+            top: 30%;">
+            <p><ins>公司必备常用软件和部门介绍</p>
+            <ul style="text-align: left; 
+               padding-left: 20px; list-style: disc; 
+               line-height: 1.8; 
+               font-size: 15px;">
+                <li>wechat/微信</li>
+                <li>Telegram</li>
+                <li style="font-size: 13px;">未安装该软件，可在应用商店搜索下载使用</li>
+                <li>Wechat/微信是给代理用户办理充值业务的必备工具，
+                    没有安装微信将无法进行充值操作。</li>
+                <li>Telegram主要用来和代理对接业务、日常沟通联系、
+                    每月对账核算,平时工作大部分业务都以这款软件为主,建议务必安装使用。
+                </li>
+                <li>公司内部设有前台组、管理员组、装维组、推销人员组、财务组和媒体组。<br>
+                    前台组负责日常接待和事务对接。<br>
+                    管理员组负责整体管理与工作统筹。<br>
+                    装维组专门负责安装、故障修复和售后维护工作。<br>
+                    推销人员组负责业务推广、拓展代理客户。<br>
+                    财务组负责日常对账、收支核算与账务统计。<br>
+                    媒体组负责公司宣传、抖音账号运营和宣传素材制作。</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="content c2">
+        <div class="box"><ins style="font-size: 25px;">人员信息</ins>
+            <h1>总裁</h1>
+            <h3 style="position:absolute;
+           left:20%;
+           top: 20%;">运营部经理<br>
+                Tinali
+                <hr>
+                <h3>
+                    <h3 style="position:absolute;
+           right:20%;
+           top: 20%;">装维经理<br>
+                        熊哥
+                        <hr>
+                        <h3>
+                            <h5 style="position: absolute;
+            top: 35%;">前台/客服组<br>
+                                。Min khantzaw<br>
+                                。Suyin<br>
+                                。Theinaung
+                            </h5>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+    </div>
+    <div class="content c3">
+        <div class="box">产品服务内容区域</div>
+    </div>
+    <div class="content c4">
+        <div class="box">>闻公告内容区域</div>
+    </div>
+    <div class="content c5">
+        <div class="box"></div>
+    </div>
+    <div class="box2"><img src="logo.jpg" alt="itel logo" class="logo">
+        <h1 class="bianzi" style="color: #000000;">iTEL本地通SIM卡</h1>
+    </div>
+    <div class="ban">&copy;iTEL小方2026📶</div>
+</body>
+
+</html>
